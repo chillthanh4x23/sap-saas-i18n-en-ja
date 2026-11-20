@@ -4,6 +4,12 @@ Notable package changes use [Keep a Changelog](https://keepachangelog.com/en/1.1
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-20
+
+### Clarified
+
+- The public repository is the maintained main skill. Consuming projects keep private profiles, conventions and data outside it, and release archives are generated snapshots rather than separately maintained skills.
+
 ## [0.2.0] - 2026-11-20
 
 ### Added

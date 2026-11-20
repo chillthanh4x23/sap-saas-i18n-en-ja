@@ -7,6 +7,8 @@ description: Translate or review English-to-Japanese application i18n resources 
 
 Package version: [VERSION](VERSION). Maintainers: see [change history](CHANGELOG.md) and [versioning and releases](references/versioning.md).
 
+This folder is the maintained main skill and the source for public releases. Maintain reusable behavior here; load application-specific conventions, profiles and resources from the consuming project's private workspace. Release ZIPs are generated snapshots, not separate copies to maintain. See the [main skill and private project boundary](references/public-distribution.md).
+
 Produce usable Japanese application resources for Japanese IT professionals, especially SAP practitioners. The person requesting translation may not know Japanese. Take responsibility for language decisions; ask them only for facts, business meaning, or product conventions they can judge. The project requires compact noun/action forms for controls and headings, natural, concise polite sentences for message bodies, and clear clipped instructions for hints and placeholders. Review display-width growth without distorting the language.
 
 Keep skill documentation, sample prompts and generated review/report files in English unless the user requests another language. Japanese application resources remain Japanese. Chat explanations may follow the user's language.
