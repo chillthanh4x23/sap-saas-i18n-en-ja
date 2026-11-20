@@ -1,0 +1,6 @@
+interface:
+  display_name: "SAP / SaaS EN → JA"
+  short_description: "Translate SAP and SaaS i18n from English to Japanese"
+  default_prompt: "Use $sap-saas-i18n-en-ja to translate English i18n resources into Japanese for IT/SAP users. Automatically check the current terminology, verify each term's business meaning and Japanese wording in an AI review, correct issues and recheck before returning the outcome. Preserve runtime syntax and explain material decisions in English."
+policy:
+  allow_implicit_invocation: true

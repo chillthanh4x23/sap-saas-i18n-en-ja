@@ -1,0 +1,896 @@
+{
+  "schemaVersion": 1,
+  "title": "Terminology and business context",
+  "introduction": [
+    "These are working defaults for this skill, not a claim that every SAP product/release uses identical wording. Apply an explicit application convention first, in the appropriate business sense. Verify unfamiliar SAP-specific terms against the actual product/module's Japanese documentation.",
+    "Do not enforce glossary entries by substring replacement. For example, Invoice inside Invoice Date is not a separate requirement to insert 請求書, and Review does not always mean approval.",
+    "The structured file is the maintained source for this reference, the generated project glossary and the executable checks. A check is scoped separately from a vocabulary suggestion; a glossary row alone does not impose a universal Japanese translation."
+  ],
+  "sections": [
+    {
+      "title": "Context decisions",
+      "before": [],
+      "columns": [
+        "Source concept",
+        "Recommended wording by meaning",
+        "Decision rule"
+      ],
+      "entries": [
+        {
+          "id": "supplier-vendor",
+          "source": "Supplier / Vendor",
+          "japanese": "仕入先 for an SAP ERP supplier role; サプライヤー for a SaaS/product convention",
+          "notes": "Context decision. Preserve the application's agreed form, including サプライヤ if the linked SAP product uses that spelling. A convention for one application does not govern another.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Supplier",
+              "Vendor"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "customer",
+          "source": "Customer",
+          "japanese": "得意先 for SAP sales/accounting customer master; 顧客 for general SaaS customers; カスタマー if already agreed",
+          "notes": "Context decision. A customer record and a tenant organization are not interchangeable.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Customer"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "purchase-order-po",
+          "source": "Purchase Order / PO",
+          "japanese": "PO for an established compact UI abbreviation; 購買発注 when the business document needs to be explicit",
+          "notes": "Context decision. Keep PO if part of an identifier or known product label. Do not use two names randomly within one screen.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Purchase Order",
+              "PO"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "po-confirmation-poc",
+          "source": "PO Confirmation / POC",
+          "japanese": "POC for an established UI abbreviation; 購買発注確認 for explicit document/process wording",
+          "notes": "Context decision. Distinguish a supplier response from approving a PO internally.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "PO Confirmation",
+              "POC"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "verify-verification",
+          "source": "Verify / Verification",
+          "japanese": "確認 for human/business checking; 検証 for technical correctness; 認証 only for an actual authentication/certification meaning",
+          "notes": "Context decision. Inspect the operation, not just the English verb.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Verify",
+              "Verification"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "verified",
+          "source": "Verified",
+          "japanese": "確認済み after a human/business check; 検証済み after validating correctness",
+          "notes": "Context decision. A manually reviewed extraction is not automatically an authenticated identity.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Verified"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "validation",
+          "source": "Validation",
+          "japanese": "検証 for correctness; 入力チェック may fit an established form-validation UI",
+          "notes": "The supplied glossary chooses 検証. Any different project convention needs the actual UI/form context and a recorded decision.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Validation"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "confirm-confirmation",
+          "source": "Confirm / Confirmation",
+          "japanese": "確認 for checking or accepting a dialog; business compounds may have their own terms",
+          "notes": "Do not turn confirmation into approval."
+        },
+        {
+          "id": "approve-approval-approved",
+          "source": "Approve / Approval / Approved",
+          "japanese": "承認 / 承認 / 承認済み",
+          "notes": "Use only where the source really grants approval."
+        },
+        {
+          "id": "item",
+          "source": "Item",
+          "japanese": "明細 for document line items; 品目 for a material; 項目 for a field/list entry; アイテム only where natural and agreed",
+          "notes": "Resolve from namespace/call site. Never globally map Item to 明細.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Item",
+              "Items"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "post-posting-posted",
+          "source": "Post / Posting / Posted",
+          "japanese": "転記 / 転記 / 転記済み for ERP accounting; 投稿 for a publication/social action",
+          "notes": "Do not infer accounting from the word Post alone.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Post",
+              "Posting",
+              "Posted"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "available",
+          "source": "Available",
+          "japanese": "利用可能 for a usable feature; 空き for capacity; 在庫あり for stock; 件見つかりました for search results where appropriate",
+          "notes": "Preserve the real proposition. “No results available” is usually 該当する結果がありません.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Available"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "successfully",
+          "source": "Successfully",
+          "japanese": "Compact completed-result wording for controls/statuses; natural polite completed-result sentences for message bodies; 正常に when normal execution itself matters",
+          "notes": "Preserve completed success, distinct from action/progress. Do not mechanically insert 正常に. Follow ui-writing.md: headings compact, message bodies polite, hints clipped."
+        },
+        {
+          "id": "submit",
+          "source": "Submit",
+          "japanese": "送信 for sending a request; 提出 when the business process requires formal submission",
+          "notes": "Choose by the actual request flow: sending a request and formally submitting a business document can require different wording.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Submit"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "tenant-workspace-organization",
+          "source": "Tenant / Workspace / Organization",
+          "japanese": "テナント / ワークスペース / 組織",
+          "notes": "Keep distinct unless the product explicitly defines them as the same entity."
+        },
+        {
+          "id": "role-permission-authorization-authentication",
+          "source": "Role / Permission / Authorization / Authentication",
+          "japanese": "ロール / 権限 / 認可 / 認証",
+          "notes": "Preserve the security meaning. Do not conflate logging in with being allowed to perform an action."
+        },
+        {
+          "id": "subscription",
+          "source": "Subscription",
+          "japanese": "サブスクリプション for a SaaS plan/service; 購読 for a feed/newsletter where appropriate",
+          "notes": "Billing cancellation does not necessarily delete an account or data.",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Subscription"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "deploy-publish-release",
+          "source": "Deploy / Publish / Release",
+          "japanese": "デプロイ / 公開 / リリース",
+          "notes": "These operations may have different effects. Use the actual product workflow."
+        }
+      ],
+      "after": [
+        "For unresolved context decisions, give a proposed interpretation and explain it in the user's language. If business meaning is uncertain, retain pending status and ask about the operation. A stylistic preference can be proposed and recorded without forcing a non-Japanese-speaking user to choose synonyms."
+      ]
+    },
+    {
+      "title": "SAP and business vocabulary",
+      "before": [],
+      "columns": [
+        "English",
+        "Japanese draft convention",
+        "Scope / notes"
+      ],
+      "entries": [
+        {
+          "id": "sales-order",
+          "source": "Sales Order",
+          "japanese": "受注",
+          "notes": "Sales business document",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Sales Order"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "supplier-invoice",
+          "source": "Supplier Invoice",
+          "japanese": "仕入先請求書",
+          "notes": "If Supplier is locked as サプライヤー, consider the compound consistently in that product; do not silently change an approved document name",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Supplier Invoice"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "invoice",
+          "source": "Invoice",
+          "japanese": "請求書",
+          "notes": "Invoice document",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Invoice"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "invoice-date",
+          "source": "Invoice Date",
+          "japanese": "請求日",
+          "notes": "Check whether issue date is intended",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Invoice Date"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "posting-date",
+          "source": "Posting Date",
+          "japanese": "転記日",
+          "notes": "ERP accounting",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Posting Date"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "document-currency",
+          "source": "Document Currency",
+          "japanese": "伝票通貨",
+          "notes": "ERP document",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Document Currency"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "company-code",
+          "source": "Company Code",
+          "japanese": "会社コード",
+          "notes": "SAP organizational unit",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Company Code"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "cost-center",
+          "source": "Cost Center",
+          "japanese": "コストセンタ",
+          "notes": "Respect linked SAP product spelling",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Cost Center"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "g-l-account",
+          "source": "G/L Account",
+          "japanese": "総勘定元帳勘定",
+          "notes": "Respect actual product label; G/L勘定 may be an agreed compact form"
+        },
+        {
+          "id": "payment-term-s",
+          "source": "Payment Term(s)",
+          "japanese": "支払条件",
+          "notes": "Payment conditions",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Payment Term(s)"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "tax-code-tax-amount",
+          "source": "Tax Code / Tax Amount",
+          "japanese": "税コード / 税額",
+          "notes": "Tax fields"
+        },
+        {
+          "id": "net-amount-gross-amount",
+          "source": "Net Amount / Gross Amount",
+          "japanese": "正味金額 / 総額",
+          "notes": "Preserve tax-inclusive/exclusive meaning from source"
+        },
+        {
+          "id": "line-item",
+          "source": "Line Item",
+          "japanese": "明細",
+          "notes": "Document row",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Line Item"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "material-material-master",
+          "source": "Material / Material Master",
+          "japanese": "品目 / 品目マスタ",
+          "notes": "SAP material concept"
+        },
+        {
+          "id": "master-data",
+          "source": "Master Data",
+          "japanese": "マスタデータ",
+          "notes": "Project convention; avoid drifting to マスターデータ",
+          "check": {
+            "kind": "deprecated",
+            "sourceTerms": [
+              "Master Data"
+            ],
+            "match": "phrase",
+            "severity": "warning",
+            "deprecatedJapanese": [
+              "マスターデータ"
+            ]
+          }
+        },
+        {
+          "id": "business-partner",
+          "source": "Business Partner",
+          "japanese": "ビジネスパートナ",
+          "notes": "Verify exact spelling in target SAP product",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Business Partner"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "business-object",
+          "source": "Business Object",
+          "japanese": "ビジネスオブジェクト",
+          "notes": "Business object",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Business Object"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "object-type",
+          "source": "Object Type",
+          "japanese": "オブジェクトタイプ",
+          "notes": "Product convention",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Object Type"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "document-type",
+          "source": "Document Type",
+          "japanese": "ドキュメントタイプ",
+          "notes": "Do not replace an ERP-specific 伝票タイプ without context",
+          "check": {
+            "kind": "context-dependent",
+            "sourceTerms": [
+              "Document Type"
+            ],
+            "match": "phrase",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "shipment-notification",
+          "source": "Shipment Notification",
+          "japanese": "出荷通知",
+          "notes": "Shipping notification",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Shipment Notification"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "advance-ship-notice-asn",
+          "source": "Advance Ship Notice (ASN)",
+          "japanese": "事前出荷通知",
+          "notes": "Keep ASN where it is an agreed abbreviation or identifier",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Advance Ship Notice (ASN)"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "reference-data",
+          "source": "Reference Data",
+          "japanese": "参照データ",
+          "notes": "Reference data",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Reference Data"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "workflow",
+          "source": "Workflow",
+          "japanese": "ワークフロー",
+          "notes": "Workflow",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Workflow"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "approver",
+          "source": "Approver",
+          "japanese": "承認者",
+          "notes": "Approval actor",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Approver"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "pending-approval",
+          "source": "Pending Approval",
+          "japanese": "承認待ち",
+          "notes": "State",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Pending Approval"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "posting-status-post-failed",
+          "source": "Posting Status / Post Failed",
+          "japanese": "転記ステータス / 転記失敗",
+          "notes": "Accounting only"
+        },
+        {
+          "id": "reprocessing",
+          "source": "Reprocessing",
+          "japanese": "再処理",
+          "notes": "Process again; distinguish a mere network retry",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Reprocessing"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "document-processing",
+          "source": "Document Processing",
+          "japanese": "ドキュメント処理",
+          "notes": "Product convention",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Document Processing"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "document-extraction",
+          "source": "Document Extraction",
+          "japanese": "データ抽出",
+          "notes": "AI document extraction",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Document Extraction"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "extraction-extracted",
+          "source": "Extraction / Extracted",
+          "japanese": "抽出 / 抽出済み",
+          "notes": "State"
+        },
+        {
+          "id": "confidence-score",
+          "source": "Confidence Score",
+          "japanese": "信頼度スコア",
+          "notes": "AI output confidence; do not imply guaranteed correctness",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Confidence Score"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "duplicate-detection",
+          "source": "Duplicate Detection",
+          "japanese": "重複検知",
+          "notes": "Detection process",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Duplicate Detection"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "review",
+          "source": "Review",
+          "japanese": "レビュー",
+          "notes": "Inspection/review without necessarily approving",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Review"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "document-analytics-business-analytics",
+          "source": "Document Analytics / Business Analytics",
+          "japanese": "ドキュメント分析 / ビジネス分析",
+          "notes": "Analytics features"
+        },
+        {
+          "id": "email-inbox",
+          "source": "Email Inbox",
+          "japanese": "メール受信箱",
+          "notes": "Product inbox",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Email Inbox"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "processing-logs",
+          "source": "Processing Logs",
+          "japanese": "処理ログ",
+          "notes": "Processing history",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Processing Logs"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "batch-job-log",
+          "source": "Batch / Job / Log",
+          "japanese": "バッチ / ジョブ / ログ",
+          "notes": "IT terminology"
+        },
+        {
+          "id": "status-error",
+          "source": "Status / Error",
+          "japanese": "ステータス / エラー",
+          "notes": "Generic UI"
+        },
+        {
+          "id": "draft",
+          "source": "Draft",
+          "japanese": "ドラフト",
+          "notes": "User-confirmed project convention for visible UI text, including compound phrases. Supersedes 下書き for this concept. Keep resource keys, enums and code unchanged.",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Draft",
+              "Drafts"
+            ],
+            "match": "phrase",
+            "severity": "error",
+            "deprecatedJapanese": [
+              "下書き"
+            ]
+          }
+        }
+      ],
+      "after": []
+    },
+    {
+      "title": "Common UI and SaaS vocabulary",
+      "before": [
+        "These are starting conventions, not previously user-approved decisions."
+      ],
+      "columns": [
+        "English",
+        "Japanese",
+        "Scope"
+      ],
+      "entries": [
+        {
+          "id": "save-cancel-close",
+          "source": "Save / Cancel / Close",
+          "japanese": "保存 / キャンセル / 閉じる",
+          "notes": "Actions; cancel may mean 取消 in a business cancellation workflow"
+        },
+        {
+          "id": "create-add-edit-update-delete",
+          "source": "Create / Add / Edit / Update / Delete",
+          "japanese": "作成 / 追加 / 編集 / 更新 / 削除",
+          "notes": "Keep operations distinct; use 登録 for a registration flow where appropriate"
+        },
+        {
+          "id": "search-filter-sort-refresh",
+          "source": "Search / Filter / Sort / Refresh",
+          "japanese": "検索 / フィルタ / 並べ替え / 再読み込み",
+          "notes": "Do not confuse Refresh with updating stored data; follow an existing product convention"
+        },
+        {
+          "id": "settings-configuration",
+          "source": "Settings / Configuration",
+          "japanese": "設定",
+          "notes": "Distinguish configuration objects if the product does"
+        },
+        {
+          "id": "dashboard",
+          "source": "Dashboard",
+          "japanese": "ダッシュボード",
+          "notes": "Product overview",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Dashboard"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "upload-download",
+          "source": "Upload / Download",
+          "japanese": "アップロード / ダウンロード",
+          "notes": "Transfer direction"
+        },
+        {
+          "id": "import-export",
+          "source": "Import / Export",
+          "japanese": "インポート / エクスポート",
+          "notes": "Keep distinct from upload/download"
+        },
+        {
+          "id": "export-to-excel",
+          "source": "Export to Excel",
+          "japanese": "Excel出力",
+          "notes": "Supplied project convention"
+        },
+        {
+          "id": "user-administrator",
+          "source": "User / Administrator",
+          "japanese": "ユーザー / 管理者",
+          "notes": "IT audience"
+        },
+        {
+          "id": "sign-in-sign-out",
+          "source": "Sign in / Sign out",
+          "japanese": "サインイン / サインアウト",
+          "notes": "Keep ログイン / ログアウト if that pair is established"
+        },
+        {
+          "id": "single-sign-on-sso",
+          "source": "Single sign-on (SSO)",
+          "japanese": "シングルサインオン（SSO）",
+          "notes": "Retain SSO in compact UI where familiar"
+        },
+        {
+          "id": "api-key-access-token",
+          "source": "API key / Access token",
+          "japanese": "APIキー / アクセストークン",
+          "notes": "Never translate the actual key/token value"
+        },
+        {
+          "id": "session-timeout",
+          "source": "Session / Timeout",
+          "japanese": "セッション / タイムアウト",
+          "notes": "IT context"
+        },
+        {
+          "id": "endpoint-webhook",
+          "source": "Endpoint / Webhook",
+          "japanese": "エンドポイント / Webhook",
+          "notes": "Use established product spelling, e.g. ウェブフック if agreed"
+        },
+        {
+          "id": "integration-connection",
+          "source": "Integration / Connection",
+          "japanese": "連携 / 接続",
+          "notes": "Application integration versus connection"
+        },
+        {
+          "id": "synchronization",
+          "source": "Synchronization",
+          "japanese": "同期",
+          "notes": "Preserve direction and scope",
+          "check": {
+            "kind": "required",
+            "sourceTerms": [
+              "Synchronization"
+            ],
+            "match": "exact",
+            "severity": "warning"
+          }
+        },
+        {
+          "id": "notification-audit-log",
+          "source": "Notification / Audit log",
+          "japanese": "通知 / 監査ログ",
+          "notes": "Keep a processing log distinct from an audit log"
+        },
+        {
+          "id": "environment-production-sandbox",
+          "source": "Environment / Production / Sandbox",
+          "japanese": "環境 / 本番環境 / サンドボックス",
+          "notes": "Do not infer deployment targets"
+        },
+        {
+          "id": "usage-quota",
+          "source": "Usage / Quota",
+          "japanese": "使用量 / 上限",
+          "notes": "Quota may require 割り当て or 割当量 by context"
+        },
+        {
+          "id": "billing-plan",
+          "source": "Billing / Plan",
+          "japanese": "請求 / プラン",
+          "notes": "Billing operation versus invoice document"
+        },
+        {
+          "id": "vector",
+          "source": "Vector",
+          "japanese": "ベクトル",
+          "notes": "Recommended IT wording for this package. Record any different application spelling as a scoped private convention; do not impose it on unrelated applications."
+        }
+      ],
+      "after": [
+        "Retain SAP, SaaS, ERP, API, URL, URI, ID, CSV, JSON, XML, HTTP, OAuth, SAML, OData and product/version names when they identify technologies or products. Do not transliterate a code, path, enum, URL, template variable or example formula."
+      ]
+    },
+    {
+      "title": "Convention change and reuse",
+      "before": [
+        "The bundled Draft convention is ドラフト. An application may have a different approved convention; keep its evidence and any exact-pair exceptions in the private profile. When a convention changes, update affected maintained decisions and generated lookup views before reuse. Keep original resources and historical run evidence unchanged. Check compound phrases by meaning rather than replacing substrings in code or unrelated Japanese."
+      ],
+      "columns": [],
+      "entries": [],
+      "after": []
+    }
+  ]
+}

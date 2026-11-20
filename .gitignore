@@ -1,0 +1,34 @@
+# Python environments, caches and test output
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Optional local dependencies and package output
+node_modules/
+dist/
+build/
+*.skill
+
+# Local secrets and temporary files
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.log
+*.tmp
+
+# Operating-system metadata
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Private consuming-project inputs and results never belong in this package.
+/sources/
+/runs/
+/archive/
+/library/
+/private/

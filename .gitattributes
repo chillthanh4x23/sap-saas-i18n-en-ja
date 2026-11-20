@@ -1,0 +1,11 @@
+# Keep text portable across Windows and Unix checkouts.
+* text=auto eol=lf
+
+# Future binary assets must not undergo line-ending conversion.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.skill binary

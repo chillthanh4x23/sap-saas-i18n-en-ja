@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "status": "draft",
+  "sourceLocale": "en",
+  "targetLocale": "ja",
+  "communicationLanguage": "en",
+  "audience": "Japanese IT professionals, especially SAP practitioners",
+  "productContext": "Determine SAP ERP-facing, B2B SaaS admin, or mixed from the current task",
+  "termDecisions": [],
+  "unchangedKeys": [],
+  "unchangedTexts": [
+    "SAP",
+    "API",
+    "CSV",
+    "JSON",
+    "XML",
+    "URL",
+    "ID",
+    "OK"
+  ],
+  "decisionEntryFields": [
+    "concept",
+    "businessMeaning",
+    "japanese",
+    "scope",
+    "status",
+    "evidence"
+  ],
+  "decisionStatusValues": [
+    "proposed",
+    "approved"
+  ],
+  "notes": [
+    "Use terminology.decisionsByKey for executable exact-pair meaning decisions (status provisional, ai-reviewed or confirmed); ai-reviewed requires reviewedBy and contextual evidence. termDecisions remains descriptive agent context.",
+    "provisionalRolesByKey records require exact English source, role, reason and status=provisional; they retain low confidence until actual user confirmation.",
+    "Copy only if a persistent application profile is useful.",
+    "An empty termDecisions list means no user-approved choices are asserted.",
+    "A decision for one application does not automatically apply to another.",
+    "Use JSON Pointer paths in unchangedKeys; record a specific reason in the delivery report.",
+    "The UI-writing width thresholds are adjustable project triage heuristics, not actual pixels or universal Japanese/SAP standards.",
+    "UI exceptions must bind exact source and target text, finding codes and a specific reason; a blanket style allowlist is not sufficient.",
+    "rolesByKey/rolesByPattern can declare action, label, heading, status, message, guidance, confirmation, empty-state, accessibility or technical; patterns are globs on the JSON Pointer, longest match first.",
+    "style: compact reproduces the legacy audit for older runs."
+  ],
+  "terminology": {
+    "decisionsByKey": {},
+    "exceptionsByKey": {},
+    "technicalByKey": {}
+  },
+  "uiWriting": {
+    "style": "role-aware",
+    "rolesByKey": {},
+    "provisionalRolesByKey": {},
+    "rolesByPattern": {},
+    "widthBudget": {
+      "minimumCells": 12,
+      "growthRatio": 1.5,
+      "toleranceCells": 2,
+      "roles": [
+        "action",
+        "label",
+        "heading",
+        "status"
+      ]
+    },
+    "standardTerms": [],
+    "exceptionsByKey": {}
+  }
+}
